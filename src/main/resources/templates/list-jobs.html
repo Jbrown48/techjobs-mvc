@@ -6,13 +6,26 @@
 
 <div th:replace="fragments :: page-header"></div>
 
-<div class="container body-content">
+    <div class="container body-content">
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+        <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <!-- TODO #3 - Use the same list display from search.html -->
-
-</div>
+        <!-- TODO #3 - Use the same list display from search.html -->
+        <div>
+            <h3>
+                <span th:text="${jobs.size()}" th:remove="tag"></span>
+                <span>Result(s)</span>
+            </h3>
+            <div>
+                <table class= "job-listing"  th:each="job : ${jobs}">
+                    <tr th:each="fields : ${job}">
+                        <td th:each="field : ${fields}" th:text="${#strings.capitalizeWords(field.key)}"></td>
+                        <td th:each="field : ${fields}" th:text="${field.value}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
